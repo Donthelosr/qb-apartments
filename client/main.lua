@@ -548,9 +548,20 @@ RegisterNetEvent('apartments:client:LeaveApartment', function()
     LeaveApartment(ClosestHouse)
 end)
 
+-- RegisterNetEvent('apartments:client:OpenStash', function()
+--     if CurrentApartment ~= nil then
+--         TriggerServerEvent("inventory:server:OpenInventory", "stash", CurrentApartment)
+--         TriggerServerEvent("InteractSound_SV:PlayOnSource", "StashOpen", 0.4)
+--         TriggerEvent("inventory:client:SetCurrentStash", CurrentApartment)
+--     end
+-- end)
+
 RegisterNetEvent('apartments:client:OpenStash', function()
     if CurrentApartment ~= nil then
-        TriggerServerEvent("inventory:server:OpenInventory", "stash", CurrentApartment)
+        TriggerServerEvent("inventory:server:OpenInventory", "stash", CurrentApartment,{
+            maxweight = 1000,
+            slots = 100,
+        })
         TriggerServerEvent("InteractSound_SV:PlayOnSource", "StashOpen", 0.4)
         TriggerEvent("inventory:client:SetCurrentStash", CurrentApartment)
     end
